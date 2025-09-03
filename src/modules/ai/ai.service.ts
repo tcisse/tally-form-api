@@ -1,0 +1,17 @@
+import { BlueprintSchema, Blueprint } from '../forms/forms.schemas.js';
+import { buildPrompt } from './ai.prompt.js';
+
+// Placeholder AI service: deterministic template for now
+export async function generateBlueprintFromPrompt(naturalLanguage: string): Promise<Blueprint> {
+  const _prompt = buildPrompt(naturalLanguage);
+  const naive: Blueprint = {
+    title: 'Generated Form',
+    description: 'Auto-generated from prompt',
+    fields: [
+      { key: 'name', label: 'Name', type: 'text', required: true },
+      { key: 'email', label: 'Email', type: 'email', required: true }
+    ]
+  };
+  return BlueprintSchema.parse(naive);
+}
+
